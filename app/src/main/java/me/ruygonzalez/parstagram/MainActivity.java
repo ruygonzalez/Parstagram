@@ -1,5 +1,6 @@
 package me.ruygonzalez.parstagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -42,8 +43,13 @@ public class MainActivity extends AppCompatActivity {
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
-                if (e != null) { // if no errors, so user was logged in correctly
+                if (e == null) { // if no errors, so user was logged in correctly
                     Log.d("LoginActivity", "Login successful!");
+
+                    // want to go to Home Activity with intent after successful log in
+                    final Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish(); //so that user can't just press back and log out
                 }
                 else { // if there is a ParseException
                     Log.e("LoginActivity", "Login failure.");
