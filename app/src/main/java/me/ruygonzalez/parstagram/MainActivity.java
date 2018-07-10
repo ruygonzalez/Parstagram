@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 // want to go to Sign Up activity when sign up is clicked
                 final Intent intent = new Intent(MainActivity.this, SignupActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
