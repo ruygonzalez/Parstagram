@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
     private Button loginBtn;
+    private Button signupBtn;
 
 
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.username_et);
         passwordInput = findViewById(R.id.password_et);
         loginBtn = findViewById(R.id.login_btn);
+        signupBtn = findViewById(R.id.signup_btn);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
                 final String username = usernameInput.getText().toString();
                 final String password = passwordInput.getText().toString();
                 login(username, password);
+            }
+        });
+
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // want to go to Sign Up activity when sign up is clicked
+                final Intent intent = new Intent(MainActivity.this, SignupActivity.class);
+                startActivity(intent);
             }
         });
     }
