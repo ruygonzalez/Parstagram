@@ -27,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button createButton;
     private Button refreshButton;
     private Button logoutButton;
+    private Button takepictureButton;
 
 
 
@@ -40,6 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         createButton = findViewById(R.id.create_btn);
         refreshButton = findViewById(R.id.refresh_btn);
         logoutButton = findViewById(R.id.logout_btn);
+        takepictureButton = findViewById(R.id.ivTakePicture);
 
         // create onclicklisteners
 
@@ -74,6 +76,15 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 logout();
+            }
+        });
+
+        takepictureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // want to go to Sign Up activity when sign up is clicked
+                final Intent intent = new Intent(HomeActivity.this, pictureActivity.class);
+                startActivity(intent);
             }
         });
     }
