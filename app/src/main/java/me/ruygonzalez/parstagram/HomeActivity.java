@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final String description = descriptionInput.getText().toString();
                 final ParseUser user = ParseUser.getCurrentUser();
-                final File file = new File(imagePath); // would normally not hard code but rather ask user to select file or take photo from camera
+                final File file = new File(imagePath); // the path is either from the picture just taken or from the default hard coded picture path
                 final ParseFile parseFile = new ParseFile(file);
 
                 parseFile.saveInBackground(new SaveCallback() {

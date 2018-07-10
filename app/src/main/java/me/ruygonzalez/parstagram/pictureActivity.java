@@ -17,7 +17,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class pictureActivity extends AppCompatActivity {
@@ -101,7 +104,7 @@ public class pictureActivity extends AppCompatActivity {
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 takenImage = rotateBitmapOrientation(photoFilePath);
 
-                /*
+
                 // resize photo
 
                 File takenPhotoUri = getPhotoFileUri(photoFileName);
@@ -140,7 +143,7 @@ public class pictureActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                */
+
 
                 // Load the taken image into a preview
                 ImageView ivPreview = (ImageView) findViewById(R.id.ivPreview);
