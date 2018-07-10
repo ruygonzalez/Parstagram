@@ -22,19 +22,25 @@ import me.ruygonzalez.parstagram.model.Post;
 public class HomeActivity extends AppCompatActivity {
     //private static String imagePath = "/sdcard/DCIM/Camera/IMG_20180619_0110347.jpg";
     //private static String imagePath = "/desktop/facebookpic.png";
-    private static String imagePath = "/storage/self/primary/DCIM/Camera/20180708_211807.jpg";
+    //private static String imagePath = "/storage/self/primary/DCIM/Camera/20180708_211807.jpg";
     private EditText descriptionInput;
     private Button createButton;
     private Button refreshButton;
     private Button logoutButton;
+    private String imagePath;
     private Button takepictureButton;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        if(getIntent().getExtras() != null){ // if picture has been taken
+            imagePath = getIntent().getExtras().getString("image path");
+        }
+        else{ // just for now use hard coded image
+            imagePath = "/storage/self/primary/DCIM/Camera/20180708_211807.jpg";
+        }
 
         // initialize views
         descriptionInput = findViewById(R.id.description_et);

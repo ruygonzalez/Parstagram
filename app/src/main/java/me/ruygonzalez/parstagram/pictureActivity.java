@@ -17,10 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class pictureActivity extends AppCompatActivity {
@@ -28,6 +25,7 @@ public class pictureActivity extends AppCompatActivity {
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public String photoFileName = "photo.jpg";
     private Button takePicButton;
+    private Button sendpicButton;
     public String photoFilePath;
     File photoFile;
     int SOME_WIDTH = 100;
@@ -42,6 +40,17 @@ public class pictureActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onLaunchCamera(view);
+            }
+        });
+        sendpicButton = findViewById(R.id.btn_sendpic);
+        sendpicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // want to go to Log In (main) Activity with intent after successful log out
+                final Intent intent = new Intent(pictureActivity.this, HomeActivity.class);
+                intent.putExtra("image path", photoFilePath);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -92,6 +101,7 @@ public class pictureActivity extends AppCompatActivity {
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 takenImage = rotateBitmapOrientation(photoFilePath);
 
+                /*
                 // resize photo
 
                 File takenPhotoUri = getPhotoFileUri(photoFileName);
@@ -99,6 +109,7 @@ public class pictureActivity extends AppCompatActivity {
                 Bitmap rawTakenImage = BitmapFactory.decodeFile(takenPhotoUri.getPath());
                 // See BitmapScaler.java: https://gist.github.com/nesquena/3885707fd3773c09f1bb
                 Bitmap resizedBitmap = BitmapScaler.scaleToFitWidth(rawTakenImage, SOME_WIDTH);
+
 
                 // Configure byte output stream
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -129,7 +140,7 @@ public class pictureActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
+                */
 
                 // Load the taken image into a preview
                 ImageView ivPreview = (ImageView) findViewById(R.id.ivPreview);
