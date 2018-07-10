@@ -1,5 +1,6 @@
 package me.ruygonzalez.parstagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
     private EditText descriptionInput;
     private Button createButton;
     private Button refreshButton;
+    private Button logoutButton;
 
 
 
@@ -37,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         descriptionInput = findViewById(R.id.description_et);
         createButton = findViewById(R.id.create_btn);
         refreshButton = findViewById(R.id.refresh_btn);
+        logoutButton = findViewById(R.id.logout_btn);
 
         // create onclicklisteners
 
@@ -66,7 +69,23 @@ public class HomeActivity extends AppCompatActivity {
                 loadTopPosts(); // when refresh is clicked, load top 20 posts
             }
         });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
     }
+
+    private void logout(){
+        ParseUser.logOutInBackground();
+        // want to go to Log In (main) Activity with intent after successful log out
+        final Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish(); //so that user can't just press back and log out
+    }
+
 
     // method to create and save a post
     private void createPost(String description, ParseFile imageFile, ParseUser user){
