@@ -9,4 +9,5 @@
     <string name="enter_a_description">enter a description</string>
     <string name="email">Email</string>
     <string name="sign_up">SIGN UP</string>
+    <string name="handle">Handle</string>
 </resources>
