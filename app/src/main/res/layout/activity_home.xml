@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="54dp" />
+
     <EditText
         android:id="@+id/description_et"
         android:layout_width="0dp"
@@ -23,6 +28,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.49" />
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/appBarLayout2"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
     <Button
         android:id="@+id/create_btn"
         android:layout_width="0dp"
@@ -51,7 +63,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_btn" />
 
-
-
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>

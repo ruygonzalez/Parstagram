@@ -16,6 +16,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
     private EditText emailInput;
+    private EditText handleInput;
     private Button registerBtn;
 
     @Override
@@ -26,6 +27,7 @@ public class SignupActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.username_et);
         passwordInput = findViewById(R.id.password_et);
         emailInput = findViewById(R.id.email_et);
+        handleInput = findViewById(R.id.handle_et);
         registerBtn = findViewById(R.id.register_btn);
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -35,19 +37,21 @@ public class SignupActivity extends AppCompatActivity {
                 final String username = usernameInput.getText().toString();
                 final String password = passwordInput.getText().toString();
                 final String email = emailInput.getText().toString();
-                signup(username, password, email);
+                final String handle = handleInput.getText().toString();
+                signup(username, password, email, handle);
             }
         });
     }
 
-    // sign up in Parse using username, password and email
-    private void signup(String username, String password, String email){
+    // sign up in Parse using username, password, email, and handle
+    private void signup(String username, String password, String email, String handle){
         // Create the ParseUser
         ParseUser user = new ParseUser();
         // Set core properties
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
+        user.put("handle",handle);
         // Invoke signUpInBackground
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
