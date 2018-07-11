@@ -60,7 +60,7 @@ public class SignupActivity extends AppCompatActivity {
                     Log.d("SignupActivity", "Signup successful!");
 
                     // want to go to Home Activity with intent after successful log in
-                    final Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
+                    final Intent intent = new Intent(SignupActivity.this, TimelineActivity.class);
                     startActivity(intent);
                     finish(); //so that user can't just press back and log out
                 } else {

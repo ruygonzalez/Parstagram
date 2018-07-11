@@ -5,8 +5,15 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Menu;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import me.ruygonzalez.parstagram.model.Post;
 
@@ -15,7 +22,7 @@ public class TimelineActivity extends AppCompatActivity {
     private final int REQUEST_CODE = 20;
     private SwipeRefreshLayout swipeContainer;
     ArrayList<Post> posts;
-    //PostAdapter postAdapter;
+    PostAdapter postAdapter;
     RecyclerView rvPosts;
 
     @Override
@@ -28,15 +35,16 @@ public class TimelineActivity extends AppCompatActivity {
         // init the arraylist (data source)
         posts = new ArrayList<>();
         // construct the adapter from this datasource
-        //postAdapter = new PostAdapter(posts)
+        postAdapter = new PostAdapter(posts);
         // RecyclerView setup (layout manager, use adapter)
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
         // set the adapter
-        //rvPosts.setAdapter(postAdapter);
+        rvPosts.setAdapter(postAdapter);
 
-        /*
         populateTimeline();
 
+
+        /* this stuff is for drag refresh
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
@@ -54,5 +62,38 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light); */
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    private void populateTimeline(){
+        // Define the class we would like to query
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        // Configure limit and sort order
+        query.setLimit(20);
+        // Execute the find asynchronously
+        query.findInBackground(new FindCallback<Post>() {
+            public void done(List<Post> itemList, ParseException e) {
+                if (e == null) {
+                    postAdapter.clear();
+                    // Access the array of results here
+                    for(int i = 0; i < itemList.size(); i++){
+                        Post post = itemList.get(i);
+                        posts.add(0,post);
+                        postAdapter.notifyItemInserted(0);
+                    }
+                    // add new items to your adapter
+                    postAdapter.addAll(posts);
+                    rvPosts.scrollToPosition(0);
+                    //String firstItemId = itemList.get(0).getObjectId();
+                    //Toast.makeText(TimelineActivity.this, firstItemId, Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("item", "Error: " + e.getMessage());
+                }
+            }
+        });
     }
 }

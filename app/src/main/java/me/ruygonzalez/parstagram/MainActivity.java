@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            final Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            final Intent intent = new Intent(MainActivity.this, TimelineActivity.class);
             startActivity(intent);
             finish();
         } else {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("LoginActivity", "Login successful!");
 
                     // want to go to Home Activity with intent after successful log in
-                    final Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    final Intent intent = new Intent(MainActivity.this, TimelineActivity.class);
                     startActivity(intent);
                     finish(); //so that user can't just press back and log out
                 }

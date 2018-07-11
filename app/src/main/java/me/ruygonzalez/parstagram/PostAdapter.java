@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.parse.ParseException;
 
 import java.util.List;
 
@@ -49,7 +50,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         // get the data according to position
         Post post = mPosts.get(position);
         // populate the views according to this data
-        holder.tvHandle.setText(post.getUser().getUsername());
+        try {
+            holder.tvHandle.setText(post.getUser().fetchIfNeeded().getString("username"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         holder.tvDescription.setText(post.getDescription());
 
         // load image
