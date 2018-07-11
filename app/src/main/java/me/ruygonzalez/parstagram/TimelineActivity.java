@@ -58,8 +58,7 @@ public class TimelineActivity extends AppCompatActivity {
 
         populateTimeline();
 
-
-        /* this stuff is for drag refresh
+        //this stuff is for drag refresh
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
@@ -76,7 +75,7 @@ public class TimelineActivity extends AppCompatActivity {
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
-                android.R.color.holo_red_light); */
+                android.R.color.holo_red_light);
     }
 
 
@@ -85,6 +84,16 @@ public class TimelineActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+    public void fetchTimelineAsync(int page) {
+        postAdapter.clear();
+        populateTimeline();
+        // Now we call setRefreshing(false) to signal refresh has finished
+        swipeContainer.setRefreshing(false);
+    }
+
+
+
     private void populateTimeline(){
         // Define the class we would like to query
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
