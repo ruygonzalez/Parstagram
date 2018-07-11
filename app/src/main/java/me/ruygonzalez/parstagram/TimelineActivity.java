@@ -87,11 +87,11 @@ public class TimelineActivity extends AppCompatActivity {
 
     public void fetchTimelineAsync(int page) {
         postAdapter.clear();
+        posts.clear();
         populateTimeline();
         // Now we call setRefreshing(false) to signal refresh has finished
         swipeContainer.setRefreshing(false);
     }
-
 
 
     private void populateTimeline(){
@@ -99,19 +99,15 @@ public class TimelineActivity extends AppCompatActivity {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // Configure limit and sort order
         query.setLimit(20);
+        // get the latest 20 messages, order will show up newest to oldest of this group
+        query.orderByDescending("createdAt");
         // Execute the find asynchronously
         query.findInBackground(new FindCallback<Post>() {
             public void done(List<Post> itemList, ParseException e) {
                 if (e == null) {
                     postAdapter.clear();
-                    // Access the array of results here
-                    for(int i = 0; i < itemList.size(); i++){
-                        Post post = itemList.get(i);
-                        posts.add(0,post);
-                        postAdapter.notifyItemInserted(0);
-                    }
                     // add new items to your adapter
-                    postAdapter.addAll(posts);
+                    postAdapter.addAll(itemList);
                     rvPosts.scrollToPosition(0);
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
