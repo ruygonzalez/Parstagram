@@ -38,7 +38,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".pictureActivity" />
-        <activity android:name=".TimelineActivity"></activity>
+        <activity android:name=".TimelineActivity" />
+        <activity android:name=".PostDetailsActivity"></activity>
     </application>
 
 </manifest>
