@@ -17,10 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class pictureActivity extends AppCompatActivity {
@@ -106,7 +103,7 @@ public class pictureActivity extends AppCompatActivity {
 
 
                 // resize photo
-
+                /*
                 File takenPhotoUri = getPhotoFileUri(photoFileName);
                 // by this point we have the camera photo on disk
                 Bitmap rawTakenImage = BitmapFactory.decodeFile(takenPhotoUri.getPath());
@@ -144,7 +141,7 @@ public class pictureActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
+                */
                 // Load the taken image into a preview
                 ImageView ivPreview = (ImageView) findViewById(R.id.ivPreview);
                 ivPreview.setImageBitmap(takenImage);

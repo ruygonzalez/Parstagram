@@ -1,5 +1,6 @@
 package me.ruygonzalez.parstagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -24,6 +27,7 @@ public class TimelineActivity extends AppCompatActivity {
     ArrayList<Post> posts;
     PostAdapter postAdapter;
     RecyclerView rvPosts;
+    Button btnCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,17 @@ public class TimelineActivity extends AppCompatActivity {
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
         // set the adapter
         rvPosts.setAdapter(postAdapter);
+
+        btnCreate = findViewById(R.id.btn_create);
+        btnCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // want to go to to home activity to be able to create posts if button clicked
+                final Intent intent = new Intent(TimelineActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         populateTimeline();
 
@@ -63,6 +78,7 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light); */
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -88,8 +104,6 @@ public class TimelineActivity extends AppCompatActivity {
                     // add new items to your adapter
                     postAdapter.addAll(posts);
                     rvPosts.scrollToPosition(0);
-                    //String firstItemId = itemList.get(0).getObjectId();
-                    //Toast.makeText(TimelineActivity.this, firstItemId, Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
                 }

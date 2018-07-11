@@ -27,4 +27,12 @@
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <Button
+        android:id="@+id/btn_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="Create Post" />
+
 </RelativeLayout>
