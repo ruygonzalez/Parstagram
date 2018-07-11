@@ -93,7 +93,6 @@ public class TimelineActivity extends AppCompatActivity {
         swipeContainer.setRefreshing(false);
     }
 
-
     private void populateTimeline(){
         // Define the class we would like to query
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);

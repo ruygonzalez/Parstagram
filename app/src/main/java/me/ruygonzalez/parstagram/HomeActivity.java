@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -24,12 +25,12 @@ public class HomeActivity extends AppCompatActivity {
     //private static String imagePath = "/desktop/facebookpic.png";
     //private static String imagePath = "/storage/self/primary/DCIM/Camera/20180708_211807.jpg";
     private EditText descriptionInput;
-    private Button createButton;
-    private Button refreshButton;
+    private ImageButton createButton;
+    private ImageButton refreshButton;
     private Button logoutButton;
     private String imagePath;
-    private Button timelineButton;
-    private Button takepictureButton;
+    private ImageButton timelineButton;
+    private ImageButton takepictureButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         createButton = findViewById(R.id.create_btn);
         refreshButton = findViewById(R.id.refresh_btn);
         logoutButton = findViewById(R.id.logout_btn);
-        takepictureButton = findViewById(R.id.ivTakePicture);
+        takepictureButton = findViewById(R.id.btn_takepic);
         timelineButton = findViewById(R.id.btn_Timeline);
 
         // create onclicklisteners

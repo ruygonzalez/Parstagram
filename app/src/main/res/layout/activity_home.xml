@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,89 +11,118 @@
         android:layout_width="match_parent"
         android:layout_height="54dp" />
 
-    <EditText
-        android:id="@+id/description_et"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="225dp"
-        android:ems="10"
-        android:hint="@string/enter_a_description"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/create_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.49" />
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:background="?attr/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/appBarLayout2"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
-    <Button
-        android:id="@+id/create_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="185dp"
-        android:text="@string/create"
-        app:layout_constraintBottom_toTopOf="@+id/refresh_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_et" />
-
-    <Button
-        android:id="@+id/refresh_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/refresh"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_btn" />
 
     <Button
         android:id="@+id/logout_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="600dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="63dp"
+        android:background="@color/purple_7"
         android:text="@string/log_out"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/ivTakePicture"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:text="TAKE PICTURE"
-        app:layout_constraintBottom_toTopOf="@+id/create_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageButton
+        android:id="@+id/btn_takepic"
+        android:layout_width="78dp"
+        android:layout_height="53dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="48dp"
+        android:background="@android:color/transparent"
+        android:tint="@color/purple_7"
+        app:srcCompat="@drawable/camera_shadow_fill"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="344dp" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/create_btn"
+        android:layout_width="88dp"
+        android:layout_height="62dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="38dp"
+        android:background="@android:color/transparent"
+        android:tint="@color/purple_7"
+        app:srcCompat="@drawable/direct" />
+
+    <ImageButton
         android:id="@+id/btn_Timeline"
+        android:layout_width="65dp"
+        android:layout_height="46dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/logout_btn"
+        android:layout_marginStart="14dp"
+        android:background="@android:color/transparent"
+        android:tint="@color/purple_8"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <ImageButton
+        android:id="@+id/refresh_btn"
+        android:layout_width="95dp"
+        android:layout_height="71dp"
+        android:layout_alignBottom="@+id/create_btn"
+        android:layout_toStartOf="@+id/btn_takepic"
+        android:background="@android:color/transparent"
+        android:tint="@color/purple_7"
+        app:srcCompat="@android:drawable/ic_popup_sync" />
+
+    <EditText
+        android:id="@+id/description_et"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ems="10"
+        android:hint="Write a caption..."
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/bioTextEntityFontColor" />
+
+    <TextView
+        android:id="@+id/text_share"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/create_btn"
+        android:layout_marginEnd="55dp"
+        android:layout_marginTop="-40dp"
+        android:text="Share"
+        android:textColor="@color/bioTextEntityFontColor" />
+
+    <TextView
+        android:id="@+id/textGoback"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignStart="@+id/btn_Timeline"
+        android:layout_below="@+id/logout_btn"
+        android:text="Go to Timeline"
+        android:textColor="@color/bioTextEntityFontColor" />
+
+    <TextView
+        android:id="@+id/textPic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="550dp"
-        android:text="Go To Timeline"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/logout_btn"
-        app:layout_constraintHorizontal_bias="0.054"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_below="@+id/create_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-40dp"
+        android:text="Take a Picture"
+        android:textColor="@color/bioTextEntityFontColor" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/create_btn"
+        android:layout_marginTop="-40dp"
+        android:layout_toEndOf="@+id/btn_Timeline"
+        android:text="Refresh"
+        android:textColor="@color/bioTextEntityFontColor" />
+
+</RelativeLayout>
