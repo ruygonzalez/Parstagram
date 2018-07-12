@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
     private void logout(){
         ParseUser.logOutInBackground();
         // want to go to Log In (main) Activity with intent after successful log out
-        final Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        final Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
         startActivity(intent);
         finish(); //so that user can't just press back and log out
     }
