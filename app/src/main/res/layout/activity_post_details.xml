@@ -49,8 +49,8 @@
         android:id="@+id/tvTimestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/tvUsername"
-        android:layout_marginEnd="56dp"
+        android:layout_alignStart="@+id/tvDescription"
+        android:layout_below="@+id/tvDescription"
+        android:layout_marginTop="-188dp"
         android:text="Timestamp" />
 </RelativeLayout>

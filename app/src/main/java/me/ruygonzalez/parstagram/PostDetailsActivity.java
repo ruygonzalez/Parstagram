@@ -74,10 +74,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         } catch (java.text.ParseException e) {
             e.printStackTrace();
         }
-        // relative date needs to be shortened to '7h' or '8m' or '9s'
-        String shortened = relativeDate.substring(0,relativeDate.indexOf(" ") + 2);
-        int i = shortened.indexOf(" ");
-        shortened = shortened.substring(0,i) + shortened.substring(i+1);
-        return shortened;
+        return relativeDate;
     }
 }

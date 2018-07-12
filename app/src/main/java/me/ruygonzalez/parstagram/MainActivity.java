@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements CameraFragment.Ca
             public void done(ParseException e) {
                 if (e == null) { // no errors
                     Log.d("MainActivity", "Create Post success!");
+                    Toast.makeText(MainActivity.this, "Posted!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     e.printStackTrace();

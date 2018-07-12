@@ -18,7 +18,6 @@ public class BitmapScaler {
         return Bitmap.createScaledBitmap(b, (int) (b.getWidth() * factor), height, true);
     }
 
-
     // scale and keep aspect ratio
     public static Bitmap scaleToFill(Bitmap b, int width, int height)
     {
