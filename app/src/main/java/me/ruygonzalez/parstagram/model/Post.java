@@ -1,5 +1,7 @@
 package me.ruygonzalez.parstagram.model;
 
+import android.util.Log;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -12,6 +14,7 @@ public class Post extends ParseObject{
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_IMAGE = "image";
     private static final String KEY_USER = "user";
+    private static final String KEY_LIKES = "Likes";
 
     public String getDescription(){
         return getString(KEY_DESCRIPTION);
@@ -28,6 +31,20 @@ public class Post extends ParseObject{
 
     public void setImage(ParseFile image){
         put(KEY_IMAGE, image);
+    }
+
+    public void addLike(){
+        int likes = getLikes() + 1;
+        put(KEY_LIKES, likes);
+        Log.d("Post", "Post liked");
+    }
+
+    public int getLikes(){
+        return getInt(KEY_LIKES);
+    }
+
+    public void setLikes(int i){
+        put(KEY_LIKES, i);
     }
 
     public ParseUser getUser(){

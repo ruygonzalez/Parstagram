@@ -16,7 +16,6 @@ import org.parceler.Parcels;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import java.util.Random;
 
 import me.ruygonzalez.parstagram.model.Post;
 
@@ -34,6 +33,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     public TextView timestamp;
     public TextView likes;
     public ImageButton home;
+    public ImageView ivHeart;
 
 
     @Override
@@ -49,6 +49,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         timestamp = (TextView) findViewById(R.id.tvTimestamp);
         tvHandle2 = (TextView) findViewById(R.id.tvHandle2);
         likes = (TextView) findViewById(R.id.tvLikes);
+        ivHeart = (ImageView) findViewById(R.id.ivHeart);
         home = (ImageButton) findViewById(R.id.btnHome);
 
         // unwrap the post passed in via intent, using its simple name as a key
@@ -65,12 +66,22 @@ public class PostDetailsActivity extends AppCompatActivity {
         tvDescription.setText(post.getDescription());
         timestamp.setText(getRelativeTimeAgo(post.getCreatedAt().toString()));
 
+        ivHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                post.addLike();
+                post.saveInBackground();
+                Log.d("PostAdapter", "Post Like Clicked");
+            }
+        });
+        /*
         // generate a random number of likes to display (this part is faked)
         Random rand = new Random();
         int max = 100;
         int min = 2;
         int value = rand.nextInt((max - min) + 1) + min;
-        likes.setText(Integer.toString(value) + " likes");
+        likes.setText(Integer.toString(value) + " likes");*/
+        likes.setText(Integer.toString(post.getLikes()) + " likes");
 
         // load image
         Glide.with(this)

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import org.parceler.Parcels;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 import me.ruygonzalez.parstagram.model.Post;
 
@@ -67,11 +67,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         holder.timestamp.setText(getRelativeTimeAgo(post.getCreatedAt().toString()));
 
         // generate a random number of likes to display (this part is faked)
-        Random rand = new Random();
+        /*Random rand = new Random();
         int max = 100;
         int min = 2;
         int value = rand.nextInt((max - min) + 1) + min;
-        holder.likes.setText(Integer.toString(value) + " likes");
+        holder.likes.setText(Integer.toString(value) + " likes");*/
+        holder.likes.setText(Integer.toString(post.getLikes()) + " likes");
 
         // load image
         Glide.with(context)
@@ -100,6 +101,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         public TextView tvHandle2;
         public TextView timestamp;
         public TextView likes;
+        public ImageView ivHeart;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -113,7 +115,43 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             timestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
             tvHandle2 = (TextView) itemView.findViewById(R.id.tvHandle2);
             likes = (TextView) itemView.findViewById(R.id.tvLikes);
-            itemView.setOnClickListener(this); //when a post gets clicked on go to onclick
+            ivHeart = (ImageView) itemView.findViewById(R.id.ivHeart);
+            ivHeart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // gets item position
+                    int position = getAdapterPosition();
+                    // make sure the position is valid, i.e. actually exists in the view
+                    if (position != RecyclerView.NO_POSITION) {
+                        // get the Post at the position, this won't work if the class is static
+                        Post post = mPosts.get(position);
+                        // like post
+                        post.addLike();
+                        post.saveInBackground();
+                        Log.d("PostAdapter", "Post Like Clicked");
+                    }
+                }
+            });
+
+            ivPicture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // gets item position
+                    int position = getAdapterPosition();
+                    // make sure the position is valid, i.e. actually exists in the view
+                    if (position != RecyclerView.NO_POSITION) {
+                        // get the Post at the position, this won't work if the class is static
+                        Post post = mPosts.get(position);
+                        // create intent for the new activity
+                        Intent intent = new Intent(context, PostDetailsActivity.class);
+                        // serialize the movie using parceler, use its short name as a key
+                        intent.putExtra(Post.class.getSimpleName(), Parcels.wrap(post));
+                        // show the activity
+                        context.startActivity(intent);
+                    }
+                }
+            });
+            //itemView.setOnClickListener(this); //when a post gets clicked on go to onclick
         }
 
         // when the user clicks on a post, show PostDetailsActivity for the selected post
