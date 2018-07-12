@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ import org.parceler.Parcels;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Random;
 
 import me.ruygonzalez.parstagram.model.Post;
 
@@ -23,11 +26,14 @@ public class PostDetailsActivity extends AppCompatActivity {
     Post post;
 
     // the view objects
-    TextView tvUsername;
-    TextView tvDescription;
-    TextView tvTimestamp;
-    ImageView ivPicture;
-    ImageView ivProfilePic;
+    public ImageView ivProfileImage;
+    public TextView tvHandle;
+    public TextView tvDescription;
+    public ImageView ivPicture;
+    public TextView tvHandle2;
+    public TextView timestamp;
+    public TextView likes;
+    public ImageButton home;
 
 
     @Override
@@ -36,28 +42,47 @@ public class PostDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_details);
 
         // resolve the view objects
-        tvUsername = (TextView) findViewById(R.id.tvUsername);
+        ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+        tvHandle = (TextView) findViewById(R.id.tvHandle);
         tvDescription = (TextView) findViewById(R.id.tvDescription);
-        tvTimestamp = (TextView) findViewById(R.id.tvTimestamp);
         ivPicture = (ImageView) findViewById(R.id.ivPicture);
-        ivProfilePic = (ImageView) findViewById(R.id.ivProfilePic);
+        timestamp = (TextView) findViewById(R.id.tvTimestamp);
+        tvHandle2 = (TextView) findViewById(R.id.tvHandle2);
+        likes = (TextView) findViewById(R.id.tvLikes);
+        home = (ImageButton) findViewById(R.id.btnHome);
 
         // unwrap the post passed in via intent, using its simple name as a key
         post = (Post) Parcels.unwrap(getIntent().getParcelableExtra(Post.class.getSimpleName()));
         Log.d("PostDetailsActivity", String.format("Showing details for '%s'", post.getDescription()));
         // set the text for the textviews
-        tvDescription.setText(post.getDescription());
+        // populate the views according to this data
         try {
-            tvUsername.setText(post.getUser().fetchIfNeeded().getString("username"));
+            tvHandle.setText(post.getUser().fetchIfNeeded().getString("username"));
+            tvHandle2.setText("@" + post.getUser().fetchIfNeeded().getString("handle"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        // tvTimestamp.setText(getRelativeTimeAgo(post.getCreatedAt()));
-        tvTimestamp.setText(getRelativeTimeAgo(post.getCreatedAt().toString()));
+        tvDescription.setText(post.getDescription());
+        timestamp.setText(getRelativeTimeAgo(post.getCreatedAt().toString()));
 
+        // generate a random number of likes to display (this part is faked)
+        Random rand = new Random();
+        int max = 100;
+        int min = 2;
+        int value = rand.nextInt((max - min) + 1) + min;
+        likes.setText(Integer.toString(value) + " likes");
+
+        // load image
         Glide.with(this)
                 .load(post.getImage().getUrl())
                 .into(ivPicture);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");

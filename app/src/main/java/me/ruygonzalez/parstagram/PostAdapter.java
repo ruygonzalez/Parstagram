@@ -19,6 +19,7 @@ import org.parceler.Parcels;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import me.ruygonzalez.parstagram.model.Post;
 
@@ -65,6 +66,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         holder.tvDescription.setText(post.getDescription());
         holder.timestamp.setText(getRelativeTimeAgo(post.getCreatedAt().toString()));
 
+        // generate a random number of likes to display (this part is faked)
+        Random rand = new Random();
+        int max = 100;
+        int min = 2;
+        int value = rand.nextInt((max - min) + 1) + min;
+        holder.likes.setText(Integer.toString(value) + " likes");
+
         // load image
         Glide.with(context)
                 .load(post.getImage().getUrl())
@@ -91,6 +99,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         public ImageView ivPicture;
         public TextView tvHandle2;
         public TextView timestamp;
+        public TextView likes;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -103,6 +112,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             ivPicture = (ImageView) itemView.findViewById(R.id.ivPicture);
             timestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
             tvHandle2 = (TextView) itemView.findViewById(R.id.tvHandle2);
+            likes = (TextView) itemView.findViewById(R.id.tvLikes);
             itemView.setOnClickListener(this); //when a post gets clicked on go to onclick
         }
 
