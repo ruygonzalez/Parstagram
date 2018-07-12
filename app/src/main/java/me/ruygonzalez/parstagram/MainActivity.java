@@ -16,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -44,12 +45,19 @@ public class MainActivity extends AppCompatActivity implements CameraFragment.Ca
     public String photoFileName = "photo.jpg";
     public String photoFilePath;
     public String description;
+    public MenuItem tim;
+    public MenuItem pic;
+    public MenuItem pro;
     File photoFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar_title);
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -65,13 +73,31 @@ public class MainActivity extends AppCompatActivity implements CameraFragment.Ca
                         switch (item.getItemId()) {
                             case R.id.action_timeline:
                                 fragmentTransaction.replace(R.id.flContainer, fragment1).commit();
+                                tim = item;
+                                if(pic != null)
+                                    pic.setIcon(getResources().getDrawable(R.drawable.instagram_new_post_outline_24));
+                                if(pro != null)
+                                    pro.setIcon(getResources().getDrawable(R.drawable.instagram_user_outline_24));
+                                item.setIcon(getResources().getDrawable(R.drawable.instagram_home_filled_24));
                                 return true;
                             case R.id.action_camera:
                                 fragmentTransaction.replace(R.id.flContainer, fragment2).commit();
+                                pic = item;
+                                if(tim != null)
+                                    tim.setIcon(getResources().getDrawable(R.drawable.instagram_home_outline_24));
+                                if(pro != null)
+                                    pro.setIcon(getResources().getDrawable(R.drawable.instagram_user_outline_24));
+                                item.setIcon(getResources().getDrawable(R.drawable.instagram_new_post_filled_24));
                                 onLaunchCamera();
                                 return true;
                             case R.id.action_profile:
                                 fragmentTransaction.replace(R.id.flContainer, fragment3).commit();
+                                pro = item;
+                                if(tim != null)
+                                    tim.setIcon(getResources().getDrawable(R.drawable.instagram_home_outline_24));
+                                if(pic != null)
+                                    pic.setIcon(getResources().getDrawable(R.drawable.instagram_new_post_outline_24));
+                                item.setIcon(getResources().getDrawable(R.drawable.instagram_user_filled_24));
                                 return true;
                         }
 

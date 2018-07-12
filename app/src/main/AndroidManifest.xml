@@ -42,7 +42,8 @@
         <activity android:name=".SignupActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".pictureActivity" />
-        <activity android:name=".TimelineActivity" />
+        <activity android:name=".TimelineActivity"
+            android:theme="@style/AppTheme2.AppBarOverlay"/>
         <activity android:name=".PostDetailsActivity" />
         <activity android:name=".MainActivity"></activity>
     </application>
