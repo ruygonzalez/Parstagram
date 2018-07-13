@@ -1,14 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="129dp"
-        android:layout_height="81dp"
+    <ImageView
+        android:id="@+id/ivProfilePic"
+        android:layout_width="142dp"
+        android:layout_height="140dp"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="136dp"
-        android:text="Profile" />
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/profileicon" />
 
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="142dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ivProfilePic"
+        android:text="Username"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvPosts"
+        android:layout_width="75dp"
+        android:layout_height="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/ivProfilePic"
+        android:text="Number"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvPosttxt"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPosts"
+        android:layout_toEndOf="@+id/ivProfilePic"
+        android:text="Posts"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvFollowers"
+        android:layout_width="78dp"
+        android:layout_height="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/tvPosts"
+        android:text="Number"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvFollowerstxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPosts"
+        android:layout_toEndOf="@+id/tvPosts"
+        android:text="Followers"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvFollowing"
+        android:layout_width="76dp"
+        android:layout_height="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/tvFollowers"
+        android:text="Number"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvFollowingtxt"
+        android:layout_width="78dp"
+        android:layout_height="22dp"
+        android:layout_below="@+id/tvPosts"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/tvFollowers"
+        android:text="Following"
+        android:textAlignment="center"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_below="@+id/tvPosttxt"
+        android:layout_toEndOf="@+id/ivProfilePic"
+        app:srcCompat="@drawable/editprofile" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="203dp"
+        android:layout_height="38dp"
+        android:layout_alignBottom="@+id/tvUsername"
+        android:layout_toEndOf="@+id/ivProfilePic"
+        android:background="@color/blue_6"
+        android:text="Logout"
+        android:textColor="@android:color/white" />
 </RelativeLayout>

@@ -2,6 +2,7 @@ package me.ruygonzalez.parstagram;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -129,6 +130,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                         post.addLike();
                         post.saveInBackground();
                         Log.d("PostAdapter", "Post Like Clicked");
+                        ivHeart.setImageResource(R.drawable.ufi_heart_active);
+                        ivHeart.setColorFilter(Color.parseColor("#ff69b4"));
                     }
                 }
             });
