@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     >
 
     <ImageView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:id="@+id/imageView9"
+        android:layout_width="83dp"
         android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="188dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:background="@color/white"
         android:tint="@color/black"
         app:srcCompat="@drawable/nav_logo_whiteout" />
 
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="83dp"
+        android:layout_height="32dp"
+        app:srcCompat="@drawable/direct" />
 
 
 </LinearLayout>
