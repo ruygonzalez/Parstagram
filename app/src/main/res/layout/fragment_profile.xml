@@ -65,7 +65,7 @@
 
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="203dp"
+        android:layout_width="242dp"
         android:layout_height="38dp"
         android:layout_alignBottom="@+id/tvUsername"
         android:layout_toEndOf="@+id/ivProfilePic"
@@ -80,5 +80,21 @@
         android:layout_below="@+id/tvPosts"
         android:layout_toEndOf="@+id/ivProfilePic"
         app:srcCompat="@drawable/pff" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tvUsername"
+        android:layout_marginEnd="0dp"
+        app:srcCompat="@drawable/prof" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView3" />
 
 </RelativeLayout>
