@@ -85,7 +85,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
         // Round the corners of the profile images
         final RoundedCornersTransformation roundedCornersTransformation
-                = new RoundedCornersTransformation(100, 15);
+                = new RoundedCornersTransformation(600, 15);
         final RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCornersTransformation);
         // load image
         Glide.with(context)

@@ -104,7 +104,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         // Round the corners of the profile images
         final RoundedCornersTransformation roundedCornersTransformation
-                = new RoundedCornersTransformation(100, 15);
+                = new RoundedCornersTransformation(600, 15);
         final RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCornersTransformation);
         // load image
         Glide.with(this)

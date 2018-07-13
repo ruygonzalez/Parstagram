@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
         }
         // Round the corners of the profile images
         final RoundedCornersTransformation roundedCornersTransformation
-                = new RoundedCornersTransformation(300, 15);
+                = new RoundedCornersTransformation(600, 15);
         final RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCornersTransformation);
         // load image
         Glide.with(this)
