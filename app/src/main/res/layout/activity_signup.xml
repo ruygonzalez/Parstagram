@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="450dp"
     tools:context=".SignupActivity">
 
     <android.support.design.widget.TextInputLayout
@@ -51,9 +51,8 @@
         android:id="@+id/email_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="134dp"
+        android:layout_below="@+id/handle_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_layout"
@@ -93,7 +92,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="42dp"
         android:background="@color/blue_5"
         android:text="@string/sign_up"
         android:textColor="@android:color/white"

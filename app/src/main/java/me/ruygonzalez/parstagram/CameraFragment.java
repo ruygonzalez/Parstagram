@@ -28,6 +28,7 @@ public class CameraFragment extends Fragment {
          */
         void onTextChanged(@NonNull final String text);
         void clicked();
+        void makeProfilePic();
     }
 
     /**
@@ -39,6 +40,7 @@ public class CameraFragment extends Fragment {
     ImageView ivPhoto;
     EditText etDescription;
     Button btnPost;
+    Button btnPostProfile;
 
     @Override
     public void onAttach(Context context) {
@@ -105,6 +107,13 @@ public class CameraFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 clickCallback.clicked();
+            }
+        });
+        btnPostProfile = (Button) view.findViewById(R.id.btnPostProfile);
+        btnPostProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickCallback.makeProfilePic();
             }
         });
     }

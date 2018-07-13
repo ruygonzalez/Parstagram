@@ -14,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 
 import org.parceler.Parcels;
 
@@ -22,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import me.ruygonzalez.parstagram.model.Post;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
@@ -79,6 +82,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         Glide.with(context)
                 .load(post.getImage().getUrl())
                 .into(holder.ivPicture);
+
+        // Round the corners of the profile images
+        final RoundedCornersTransformation roundedCornersTransformation
+                = new RoundedCornersTransformation(100, 15);
+        final RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCornersTransformation);
+        // load image
+        Glide.with(context)
+                .load(((ParseFile)post.getUser().get("profilepic")).getUrl().toString())
+                .apply(requestOptions)
+                .into(holder.ivProfileImage);
     }
 
     // Clean all elements of the recycler

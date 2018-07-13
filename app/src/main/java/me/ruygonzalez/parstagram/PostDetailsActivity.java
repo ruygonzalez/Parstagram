@@ -11,13 +11,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 
 import org.parceler.Parcels;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 import me.ruygonzalez.parstagram.model.Post;
 
 public class PostDetailsActivity extends AppCompatActivity {
@@ -98,6 +101,16 @@ public class PostDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Round the corners of the profile images
+        final RoundedCornersTransformation roundedCornersTransformation
+                = new RoundedCornersTransformation(100, 15);
+        final RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCornersTransformation);
+        // load image
+        Glide.with(this)
+                .load(((ParseFile)post.getUser().get("profilepic")).getUrl().toString())
+                .apply(requestOptions)
+                .into(ivProfileImage);
     }
 
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");

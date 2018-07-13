@@ -1,6 +1,5 @@
 package me.ruygonzalez.parstagram;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
+
+import java.io.File;
 
 public class SignupActivity extends AppCompatActivity {
     private EditText usernameInput;
@@ -53,6 +55,9 @@ public class SignupActivity extends AppCompatActivity {
         user.setPassword(password);
         user.setEmail(email);
         user.put("handle",handle);
+        final File file = new File("/desktop/profilepicturedef.png"); // create a default profile pic
+        final ParseFile parseFile = new ParseFile(file);
+        user.put("profilepic", parseFile);
         // Invoke signUpInBackground
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {

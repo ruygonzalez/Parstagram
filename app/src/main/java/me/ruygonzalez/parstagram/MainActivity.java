@@ -240,4 +240,22 @@ public class MainActivity extends AppCompatActivity implements CameraFragment.Ca
             }
         });
     }
+
+    // method to make picture taken the profile picture
+    public void makeProfilePic(){
+        Log.d("MainAcitivty", "Make this the profile pic requested");
+        final ParseUser user = ParseUser.getCurrentUser();
+        final File file = new File(photoFilePath); // the path is either from the picture just taken or from the default hard coded picture path
+        final ParseFile parseFile = new ParseFile(file);
+        parseFile.saveInBackground(new SaveCallback() {
+            public void done(ParseException e) {
+                // If successful save image as profile picture
+                if(null == e) {
+                    user.put("profilepic", parseFile);
+                    user.saveInBackground();
+                    Log.d("mainactivity", "ProfilePic save requested");
+                }
+            }
+        });
+    }
 }
