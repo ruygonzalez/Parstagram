@@ -123,7 +123,43 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             // perform findViewById lookups
 
             ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);
+            ivProfileImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // gets item position
+                    int position = getAdapterPosition();
+                    // make sure the position is valid, i.e. actually exists in the view
+                    if (position != RecyclerView.NO_POSITION) {
+                        // get the Post at the position, this won't work if the class is static
+                        Post post = mPosts.get(position);
+                        // create intent for the new activity
+                        Intent intent = new Intent(context, profileActivity.class);
+                        // serialize the movie using parceler, use its short name as a key
+                        intent.putExtra(Post.class.getSimpleName(), Parcels.wrap(post));
+                        // show the activity
+                        context.startActivity(intent);
+                    }
+                }
+            });
             tvHandle = (TextView) itemView.findViewById(R.id.tvHandle);
+            tvHandle.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // gets item position
+                    int position = getAdapterPosition();
+                    // make sure the position is valid, i.e. actually exists in the view
+                    if (position != RecyclerView.NO_POSITION) {
+                        // get the Post at the position, this won't work if the class is static
+                        Post post = mPosts.get(position);
+                        // create intent for the new activity
+                        Intent intent = new Intent(context, profileActivity.class);
+                        // serialize the movie using parceler, use its short name as a key
+                        intent.putExtra(Post.class.getSimpleName(), Parcels.wrap(post));
+                        // show the activity
+                        context.startActivity(intent);
+                    }
+                }
+            });
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
             ivPicture = (ImageView) itemView.findViewById(R.id.ivPicture);
             timestamp = (TextView) itemView.findViewById(R.id.tvTimestamp);
