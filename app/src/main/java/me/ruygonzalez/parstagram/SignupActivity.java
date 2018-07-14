@@ -9,11 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
-
-import java.io.File;
 
 public class SignupActivity extends AppCompatActivity {
     private EditText usernameInput;
@@ -49,16 +46,25 @@ public class SignupActivity extends AppCompatActivity {
     // sign up in Parse using username, password, email, and handle
     private void signup(String username, String password, String email, String handle){
         // Create the ParseUser
-        ParseUser user = new ParseUser();
+        final ParseUser user = new ParseUser();
         // Set core properties
         user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
         user.put("handle",handle);
-        final File file = new File("/desktop/profilepicturedef.png"); // create a default profile pic
-        final ParseFile parseFile = new ParseFile(file);
-        user.put("profilepic", parseFile);
-        // Invoke signUpInBackground
+        //final File file = new File("/desktop/profilepicturedef.png"); // create a default profile pic
+        //final ParseFile parseFile = new ParseFile(file);
+        /*parseFile.saveInBackground(new SaveCallback() {
+            public void done(ParseException e) {
+                // If successful save image as profile picture
+                if(null == e) {
+                    user.put("profilepic", parseFile);
+                    user.saveInBackground();
+                    Log.d("mainactivity", "ProfilePic save requested");
+                }
+            }
+        });*/
+        // Invoke signUpInBackgroundput("pro
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 if (e == null) {

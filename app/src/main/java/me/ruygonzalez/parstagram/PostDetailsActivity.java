@@ -107,10 +107,18 @@ public class PostDetailsActivity extends AppCompatActivity {
                 = new RoundedCornersTransformation(600, 15);
         final RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCornersTransformation);
         // load image
-        Glide.with(this)
-                .load(((ParseFile)post.getUser().get("profilepic")).getUrl().toString())
-                .apply(requestOptions)
-                .into(ivProfileImage);
+        if((ParseFile)post.getUser().get("profilepic") == null){
+            /*Glide.with(this)
+                    .load("/desktop/profilepicturedef.png")
+                    .apply(requestOptions)
+                    .into(ivProfileImage);*/
+        }
+        else {
+            Glide.with(this)
+                    .load(((ParseFile) post.getUser().get("profilepic")).getUrl().toString())
+                    .apply(requestOptions)
+                    .into(ivProfileImage);
+        }
     }
 
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");

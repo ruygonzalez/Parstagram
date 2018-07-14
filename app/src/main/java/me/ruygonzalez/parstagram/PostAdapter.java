@@ -79,6 +79,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         holder.likes.setText(Integer.toString(post.getLikes()) + " likes");
 
         // load image
+
         Glide.with(context)
                 .load(post.getImage().getUrl())
                 .into(holder.ivPicture);
@@ -88,10 +89,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                 = new RoundedCornersTransformation(600, 15);
         final RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCornersTransformation);
         // load image
-        Glide.with(context)
-                .load(((ParseFile)post.getUser().get("profilepic")).getUrl().toString())
-                .apply(requestOptions)
-                .into(holder.ivProfileImage);
+        if((ParseFile)post.getUser().get("profilepic") == null){
+            /*Glide.with(context)
+                    .load("/desktop/profilepicturedef.png")
+                    .apply(requestOptions)
+                    .into(holder.ivProfileImage);*/
+        }
+        else {
+            Glide.with(context)
+                    .load(((ParseFile) post.getUser().get("profilepic")).getUrl().toString())
+                    .apply(requestOptions)
+                    .into(holder.ivProfileImage);
+        }
     }
 
     // Clean all elements of the recycler

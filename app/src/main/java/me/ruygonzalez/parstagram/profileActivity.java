@@ -79,7 +79,6 @@ public class profileActivity extends AppCompatActivity {
         // place texts in views
         tvFollowers.setText(Integer.toString(followers));
         tvFollowing.setText(Integer.toString(following));
-        tvPosts.setText(Integer.toString(postsnum));
         try {
             tvUsername.setText(user.fetchIfNeeded().getString("username"));
         } catch (ParseException e) {
@@ -90,10 +89,18 @@ public class profileActivity extends AppCompatActivity {
                 = new RoundedCornersTransformation(600, 15);
         final RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCornersTransformation);
         // load image
-        Glide.with(this)
-                .load(((ParseFile)user.get("profilepic")).getUrl().toString())
-                .apply(requestOptions)
-                .into(ivProfilePic);
+        if((ParseFile)user.get("profilepic") == null){
+            /*Glide.with(this)
+                    .load("/desktop/profilepicturedef.png")
+                    .apply(requestOptions)
+                    .into(ivProfilePic);*/
+        }
+        else {
+            Glide.with(this)
+                    .load(((ParseFile) user.get("profilepic")).getUrl().toString())
+                    .apply(requestOptions)
+                    .into(ivProfilePic);
+        }
     }
 
     private void populateTimeline(){
@@ -109,6 +116,7 @@ public class profileActivity extends AppCompatActivity {
                     gridAdapter.clear();
                     // add new items to your adapter
                     gridAdapter.addAll(itemList);
+                    tvPosts.setText(Integer.toString(itemList.size()));
                     rvGrid.scrollToPosition(0);
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
