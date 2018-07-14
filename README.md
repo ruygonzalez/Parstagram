@@ -43,7 +43,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='ParseDemo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='InstagramDemo.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -56,7 +56,8 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Describe any challenges encountered while building the app:
+Had some issues recording with the emulator (worked fine on actual device though. Tried screen recording but since it uses the camera app to record and the app itself uses the camera when creating a post, it crashes). Also had trouble with the file size of the gif so I wasn't able to include the postdetails activity in this gif but it should be in the other gif. 
 
 ## License
 
